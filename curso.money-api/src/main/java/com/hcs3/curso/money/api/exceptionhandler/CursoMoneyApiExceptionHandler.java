@@ -32,7 +32,7 @@ public class CursoMoneyApiExceptionHandler extends ResponseEntityExceptionHandle
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
 		String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null, LocaleContextHolder.getLocale());
-		String mensagemDesenvolvedor = ex.getCause().getMessage();
+		String mensagemDesenvolvedor = ex.getCause() != null? ex.getCause().getMessage():ex.getMessage();
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario,mensagemDesenvolvedor));
 		return handleExceptionInternal(ex,erros,headers, HttpStatus.BAD_REQUEST, request);
 	}

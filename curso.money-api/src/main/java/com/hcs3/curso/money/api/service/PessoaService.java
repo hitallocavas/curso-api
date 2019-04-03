@@ -27,6 +27,24 @@ public class PessoaService {
 		}
 		
 	}
+
+	@SuppressWarnings("unused")
+	private Pessoa buscarPessoaPeloCodigo(Long codigo) {
+		Pessoa pessoaSalva = this.pessoaRepository.findOne(codigo);
+		
+		if(pessoaSalva == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		
+		return pessoaSalva;
+	}
+
+	public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
+		// TODO Auto-generated method stub
+		Pessoa pessoaSalva = buscarPessoaPeloCodigo(codigo);
+		pessoaSalva.setAtivo(ativo);
+		pessoaRepository.save(pessoaSalva);
+	}
 	
 
 }
