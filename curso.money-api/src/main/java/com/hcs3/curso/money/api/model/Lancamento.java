@@ -2,6 +2,7 @@ package com.hcs3.curso.money.api.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,10 +32,10 @@ public class Lancamento {
 	private String descricao;
 	
 	@Column(name = "data_vencimento")
-	private Date dataVencimento;
+	private LocalDate dataVencimento;
 	
 	@Column(name = "data_pagamento")
-	private Date dataPagamento;
+	private LocalDate dataPagamento;
 	
 	private BigDecimal valor;
 	
@@ -92,19 +93,19 @@ public class Lancamento {
 		this.descricao = descricao;
 	}
 
-	public Date getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataPagamento() {
+	public LocalDate getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(Date dataPagamento) {
+	public void setDataPagamento(LocalDate dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 

@@ -27,6 +27,7 @@ import com.hcs3.curso.money.api.eventos.RecursoCriadoEvent;
 import com.hcs3.curso.money.api.exceptionhandler.Erro;
 import com.hcs3.curso.money.api.model.Lancamento;
 import com.hcs3.curso.money.api.repository.LancamentoRepository;
+import com.hcs3.curso.money.api.repository.filter.LancamentoFilter;
 import com.hcs3.curso.money.api.service.LancamentoService;
 import com.hcs3.curso.money.api.service.exceptions.PessoaInexistenteOuInativaException;
 
@@ -48,10 +49,17 @@ public class LacamentoResource {
 	
 	
 	@GetMapping
-	public List<Lancamento> listar(){
-		return lancamentoRepository.findAll();
+	public List<Lancamento> listar(LancamentoFilter lancamentoFilter){
+		return lancamentoRepository.filtrar(lancamentoFilter);
 		
 	}
+	
+	@GetMapping("/filtrar")
+	public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter){
+		return lancamentoRepository.filtrar(lancamentoFilter);
+		
+	}
+	
 	
 	@GetMapping("/{codigo}")
 	public Lancamento getLancamento(@PathVariable Long codigo){
