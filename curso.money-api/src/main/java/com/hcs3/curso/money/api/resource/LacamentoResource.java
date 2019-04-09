@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,11 +64,18 @@ public class LacamentoResource {
 		
 	}
 	
+	@GetMapping("/pagina")
+	public Page<Lancamento> paginar(LancamentoFilter lancamentoFilter, Pageable page){
+		return lancamentoRepository.paginar(lancamentoFilter, page);
+		
+	}
+	
 	@DeleteMapping("/{codigo}")
 	public ResponseEntity<Object> remover(@PathVariable Long codigo){
 		Lancamento lancamentoToRemove = this.getLancamento(codigo);
 		this.lancamentoRepository.delete(lancamentoToRemove);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Lancamento removido com sucesso");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
+				"Lancamento removido com sucesso");
 	}
 	
 	
